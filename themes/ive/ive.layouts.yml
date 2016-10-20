@@ -1,0 +1,16 @@
+4squares:
+  label: 4 Squares
+  category: My Layouts
+  template: templates/4squares
+  icon: icons/four-squares.png
+  css: css/4squares.css
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    fourth:
+      label: Fourth
+

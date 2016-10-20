@@ -1,0 +1,36 @@
+<?php
+
+function annonce_schema(){
+    $schema['annonce_history'] = array(
+        'description' => 'Stores annonces update history.',
+        'fields' => array(
+            'hid' => array(
+                'description' => 'Primary Key: Unique history ID.',
+                'type'        => 'serial',
+                'unsigned'    => TRUE,
+                'not null'    => TRUE,
+            ),
+            'aid' => array(
+                'description' => 'Annonce ID.',
+                'type'        => 'int',
+                'unsigned'    => TRUE,
+                'not null'    => TRUE,
+            ),
+            'update_time' => array(
+                'description' => 'Timestamp of node update.',
+                'type'        => 'int',
+                'unsigned'    => TRUE,
+                'not null'    => TRUE,
+            ),
+            'uid' => array(
+                'description' => 'U ID.',
+                'type'        => 'int',
+                'unsigned'    => TRUE,
+                'not null'    => TRUE,
+            ),
+        ),
+        'primary key' => array('hid'),
+        'indexes' => array('aid' => array('aid')),
+    );
+    return $schema;
+}

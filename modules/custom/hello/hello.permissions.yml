@@ -1,0 +1,9 @@
+Access Hello :
+  title : 'Permissions access Hello'
+  description : 'access of sessions nlock and calculator page.'
+  restrict access : 'true'
+
+administrer hello :
+  title : 'Permissions administration Hello'
+  description : 'Hello administration permissions.'
+  restrict access : 'true'

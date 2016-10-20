@@ -1,0 +1,101 @@
+<?php
+function hello_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+    switch ($route_name) {
+        // Main module help for the block module.
+        case 'help.page.hello':
+        return '<p>' . t('test aide hello', array(':hello' => \Drupal::url('block.admin_display'))) . '</p>';
+        break;
+    }
+}
+
+function hello_cron() {
+    drupal_set_message(t("Message d'erreur du module hello"),"error");
+}
+
+/**
+ *
+ */
+function hello_user_login() {
+    $account = \Drupal::currentUser();
+    $nom= $account->getAccountName();
+    kint($account);
+    $time = $account->getTimeZone();
+
+    drupal_set_message(t("Welcome dear @name! ",array('@name' =>$nom)),"status");
+    drupal_set_message(t("You're from the @time 's zone.",array('@time' =>$time)),"status");
+}
+
+function hello_node_update(Drupal\node\NodeInterface $node) {
+    $node_id = $node->id();
+
+    $account = \Drupal::currentUser();
+    $user = $account->id();
+
+    $update_time = time();
+
+    $database = \Drupal::database();
+
+    $database->insert('hello_node_history')
+        ->fields(array('nid' => $node_id,'update_time' => $update_time, 'uid' => $user))
+        ->execute();
+}
+
+function hello_page_attachments(array &$page){
+    $page['#attached']['library'][] = 'hello/base';
+}
+
+function hello_preprocess_block(&$variables){
+//   kint($variables);
+
+    $color_config = \Drupal::config('hello.config')->get('color');
+//    kint($color_config);
+
+        $variables['attributes']['class'][] = $color_config;
+
+}
+
+/**
+ * Implements hook_theme().
+ */
+function hello_theme($existing, $type, $theme, $path){
+    return array(
+        'hello_history' =>  array(
+            'template' =>   'hello_node_history',
+            'variables' =>   array('data' => NULL, 'node_name' => NULL, 'count' => '0'),
+        ),
+    );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function hello_form_contact_message_feedback_form_alter(&$form, Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+//kint($form);
+/*Add a field*/
+    $form['phone']= array(
+        '#type'=>           'tel',
+        '#title'=>          t('Phone number'),
+        '#weight'=>         '-5',
+    );
+
+ /*Rename a label*/
+   $form['actions']['submit']['#value']= t('Send now!');
+
+/*delete a field*/
+    $form['subject']['#access']=FALSE;
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function hello_mail_alter(&$message)
+{
+//    kint($message);
+    if ($message['id'] == 'contact_page_mail')
+        $message['body'][] = $message['params']['phone'];
+}
+
+
+
+

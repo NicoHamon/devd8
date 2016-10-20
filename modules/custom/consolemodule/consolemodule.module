@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains consolemodule.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function consolemodule_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the consolemodule module.
+    case 'help.page.consolemodule':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My awesome console Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}

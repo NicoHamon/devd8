@@ -1,0 +1,14 @@
+{
+  "name": "drupal/consolemodule",
+  "type": "drupal-module",
+  "description": "My awesome console Module",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/consolemodule",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/consolemodule",
+    "source": "http://cgit.drupalcode.org/consolemodule"
+  },
+  "require": { }
+}

@@ -1,0 +1,66 @@
+hello.hello:
+  path: '/hello/{param}'
+  defaults:
+    _title: 'Bienvenue sur la page Hello'
+    _controller: '\Drupal\hello\Controller\HelloController::content'
+    param : ''
+  requirements:
+    _access: 'TRUE'
+
+hello.hello_rss:
+  path: '/hello-rss'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\hello\Controller\HelloRssController::content'
+  requirements:
+    _access: 'TRUE'
+
+hello.hello_list:
+  path: '/hello/node-list/{paramlist}'
+  defaults:
+    _title: 'Liste des noeuds'
+    _controller: '\Drupal\hello\Controller\HelloListNodeController::content'
+    paramlist : ''
+  requirements:
+    _access: 'TRUE'
+
+hello.hello_node_history:
+  path: '/node/{node}/node-update-history'
+  defaults:
+    _title_callback: '\Drupal\hello\Controller\HelloUpdateHistoryNodeController::getTitle'
+    _controller: '\Drupal\hello\Controller\HelloUpdateHistoryNodeController::content'
+  requirements:
+    _access: 'TRUE'
+
+hello.hello_calculator:
+  path: '/hello/calculator'
+  defaults:
+    _title: 'Calculator'
+    _form: '\Drupal\hello\Form\HelloCalculatorForm'
+  requirements:
+    _permission: 'Access Hello'
+
+hello.hello_result_calculator:
+  path: '/hello/calculator/result/{data_operation}'
+  defaults:
+    _title: 'Result of the operation'
+    _controller: '\Drupal\hello\Controller\HelloResultController::content'
+    data_operation : ''
+  requirements:
+    _access: 'TRUE'
+
+hello.hello_block_color:
+  path: '/admin/appearence/color-bloc'
+  defaults:
+    _title: 'Color block configuration'
+    _form: '\Drupal\hello\Form\ColorBlockConfigurationForm'
+  requirements:
+    _permission: 'administrer hello'
+
+hello.access:
+  path: '/hello/access'
+  defaults:
+    _title: 'Access test page'
+    _controller: '\Drupal\hello\Controller\HelloAccessController::content'
+  requirements:
+    _access_hello: '48'

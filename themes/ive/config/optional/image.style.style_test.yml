@@ -1,0 +1,7 @@
+uuid: cd76b93f-4056-413a-a61c-69fdd717dca8
+langcode: en
+status: true
+dependencies: {  }
+name: style_test
+label: style_test
+effects: {  }
